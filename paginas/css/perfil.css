@@ -1,0 +1,45 @@
+:root {
+--rojo-principal: #c62828;
+--rojo-secundario: #e53935;
+--gris-oscuro: #2e2e2e;
+--gris-medio: #6b6b6b;
+--gris-claro: #f2f2f2;
+--blanco: #ffffff;
+}
+
+* {
+margin: 0;
+padding: 0.9rem;
+font-size: 1rem;
+border-radius: 30px;
+font-weight: bold;
+margin-top: 0.5rem;
+}
+
+/* BARRA INFERIOR */
+.bottom-nav {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+background-color: var(--blanco);
+border-top: 1px solid var(--gris-claro);
+display: flex;
+justify-content: space-around;
+padding: 0.4rem 0;
+}
+
+
+.bottom-nav a {
+text-decoration: none;
+color: var(--gris-medio);
+font-size: 0.7rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+
+.bottom-nav a.active {
+color: var(--rojo-principal);
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitCircle – Prototipo</title>
+  <link rel="stylesheet" href="paginas/css/index.css">
+</head>
+<body>
+
+  <header>
+    <h1>FitCircle</h1>
+    <nav class="top-nav">
+      <a href="index.html">Inicio</a>
+      <a href="paginas/ruta.html">Rutas</a>
+      <a href="paginas/retos.html">Retos</a>
+      <a href="paginas/perfil.html" class="profile-icon" aria-label="Perfil">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
+          <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" stroke-width="2"/>
+        </svg>
+      </a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <button class="start-route">▶ Iniciar ruta</button>
+
+    <!-- Monitorización física -->
+    <section class="cards">
+      <div class="card">
+        <h3>Pasos</h3>
+        <p class="metric">8.420</p>
+      </div>
+      <div class="card">
+        <h3>Calorías</h3>
+        <p class="metric">560 kcal</p>
+      </div>
+      <div class="card">
+        <h3>Distancia</h3>
+        <p class="metric">6,2 km</p>
+      </div>
+      <div class="card">
+        <h3>Pulso</h3>
+        <p class="metric">72 bpm</p>
+      </div>
+    </section>
+
+    <!-- Rutas -->
+    <section class="map-section">
+      <h2>Rutas cercanas</h2>
+      <p>Explora rutas deportivas compartidas por la comunidad.</p>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/GPS_satellites.jpg/640px-GPS_satellites.jpg" alt="Mapa GPS" class="map-image" />
+    </section>
+
+    <!-- Retos -->
+    <section>
+      <h2>Retos activos</h2>
+      <div class="challenge">
+        <h3>Reto semanal</h3>
+        <p>Corre 20 km esta semana y desbloquea un logro.</p>
+      </div>
+      <div class="challenge">
+        <h3>Reto comunitario</h3>
+        <p>Acumula 100 km junto a otros usuarios.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 FitCircle · Prototipo UI</p>
+  </footer>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="active">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7"/><path d="M9 22V12h6v10"/></svg>
+      Inicio
+    </a>
+    <a href="paginas/ruta.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg>
+      Rutas
+    </a>
+    <a href="paginas/retos.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Retos
+    </a>
+    <a href="paginas/perfil.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+      Perfil
+    </a>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,104 @@
+    :root {
+      --rojo-principal: #c62828;
+      --rojo-secundario: #e53935;
+      --gris-oscuro: #2e2e2e;
+      --gris-medio: #6b6b6b;
+      --gris-claro: #f2f2f2;
+      --blanco: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: var(--gris-claro);
+      color: var(--gris-oscuro);
+      padding-bottom: 70px;
+    }
+
+    /* HEADER */
+    header {
+      background-color: var(--rojo-principal);
+      color: var(--blanco);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+    }
+
+    /* CONTENEDOR */
+    .container {
+      padding: 1rem;
+    }
+
+    /* TARJETAS DE RETOS */
+    .challenge {
+      background-color: var(--blanco);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      border-left: 6px solid var(--rojo-secundario);
+    }
+
+    .challenge h3 {
+      color: var(--rojo-principal);
+      margin-bottom: 0.3rem;
+    }
+
+    .challenge p {
+      color: var(--gris-medio);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress {
+      background-color: var(--gris-claro);
+      border-radius: 20px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: var(--rojo-secundario);
+      width: 60%;
+    }
+
+    /* RETOS COMPLETADOS */
+    .completed {
+      opacity: 0.7;
+      border-left-color: var(--gris-medio);
+    }
+
+    /* BARRA INFERIOR */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--blanco);
+      border-top: 1px solid var(--gris-claro);
+      display: flex;
+      justify-content: space-around;
+      padding: 0.4rem 0;
+    }
+
+    .bottom-nav a {
+      text-decoration: none;
+      color: var(--gris-medio);
+      font-size: 0.7rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bottom-nav a.active {
+      color: var(--rojo-principal);
+    }
