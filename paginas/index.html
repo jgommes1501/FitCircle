@@ -1,3 +1,5 @@
+<!-- Prototipo -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FitCircle – Prototipo</title>
   <link rel="stylesheet" href="paginas/css/index.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
 <body>
 
@@ -14,7 +17,7 @@
       <a href="index.html">Inicio</a>
       <a href="paginas/ruta.html">Rutas</a>
       <a href="paginas/retos.html">Retos</a>
-      <a href="paginas/perfil.html" class="profile-icon" aria-label="Perfil">
+      <a href="index.php?url=perfil/index" class="profile-icon" aria-label="Perfil">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
           <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" stroke-width="2"/>
@@ -24,6 +27,12 @@
   </header>
 
   <main class="container">
+
+    <section class="live-location">
+      <h2>Tu ubicación en tiempo real</h2>
+      <p id="live-location-status" class="live-location-status">Esperando permiso de ubicación…</p>
+      <div id="live-location-map" class="live-location-map" aria-label="Mapa de ubicación en tiempo real"></div>
+    </section>
 
     <button class="start-route">▶ Iniciar ruta</button>
 
@@ -70,7 +79,7 @@
   </main>
 
   <footer>
-    <p>© 2025 FitCircle · Prototipo UI</p>
+    <p>© 2025 · FitCircle </p>
   </footer>
 
   <nav class="bottom-nav">
@@ -86,10 +95,12 @@
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       Retos
     </a>
-    <a href="paginas/perfil.html">
+    <a href="index.php?url=perfil/index">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
       Perfil
     </a>
   </nav>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="paginas/js/live-location.js"></script>
 </body>
 </html>

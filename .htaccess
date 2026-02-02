@@ -1,0 +1,14 @@
+DirectoryIndex index.html index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /FitCircle/
+    
+    # No reescribir si es un archivo existente
+    RewriteCond %{REQUEST_FILENAME} !-f
+    # No reescribir si es un directorio existente
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Reescribir todas las peticiones a index.php
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>

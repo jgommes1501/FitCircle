@@ -14,17 +14,13 @@ Plataforma web + app híbrida para deportistas. Centraliza la monitorización f�
 ```
 Project Structure:
     └── FitCircle/
+        ├── controllers/
+        │   └── auth.php
+        ├── models/
+        ├── views/
+        ├── assets/
         ├── index.html
-        ├── paginas/
-        │   ├── css/
-        │   │   ├── index.css
-        │   │   ├── perfil.css
-        │   │   ├── ruta.css
-        │   │   └── retos.css
-        │   ├── perfil.html
-        │   ├── ruta.html
-        │   └── retos.html
-        └── api/
+        └── .htaccess
 
 ```
 
