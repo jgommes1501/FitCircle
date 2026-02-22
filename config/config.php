@@ -4,8 +4,13 @@
     define('APP_NAME', 'FitCircle');
     define('APP_VERSION', '1.0');
 
-    // Definir URL base
-    define('URL', 'http://localhost/FitCircle/');
+    // Definir URL base (automática para local/hosting)
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $httpHost = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $scriptName = $_SERVER['SCRIPT_NAME'] ?? '/index.php';
+    $basePath = rtrim(str_replace('\\', '/', dirname($scriptName)), '/');
+    $baseUrl = $scheme . '://' . $httpHost . ($basePath !== '' ? $basePath . '/' : '/');
+    define('URL', $baseUrl);
     define('ROOT_PATH', dirname(dirname(__FILE__)));
     
     // Definir paths de carpetas

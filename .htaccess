@@ -1,14 +1,20 @@
-DirectoryIndex index.html index.php
+DirectoryIndex index.php index.html
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /FitCircle/
-    
-    # No reescribir si es un archivo existente
-    RewriteCond %{REQUEST_FILENAME} !-f
-    # No reescribir si es un directorio existente
-    RewriteCond %{REQUEST_FILENAME} !-d
-    
-    # Reescribir todas las peticiones a index.php
-    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+    # No reescribir si el recurso existe físicamente
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Front controller
+    RewriteRule ^ index.php?url=$0 [QSA,L]
+
+    # Bloquear acceso directo a carpetas internas
+    RewriteRule ^(config|controllers|models|views|libs|functions|bd)/ - [F,L,NC]
+
+    # Bloquear archivos sensibles
+    RewriteRule (^|/)\. - [F,L]
+    RewriteRule \.(sql|ini|log|env)$ - [F,L,NC]
 </IfModule>
