@@ -2,9 +2,9 @@
   const statusEl = document.getElementById('live-location-status');
   const mapEl = document.getElementById('live-location-map');
   const startBtn = document.querySelector('.start-route');
-  const stepsEl = document.getElementById('main-steps');
-  const distanceEl = document.getElementById('main-distance');
-  const timeEl = document.getElementById('main-time');
+  const stepsEl = document.getElementById('route-steps');
+  const distanceEl = document.getElementById('route-distance');
+  const timeEl = document.getElementById('route-time');
 
   if (!statusEl || !mapEl || !startBtn || !stepsEl || !distanceEl || !timeEl) return;
 
@@ -35,8 +35,8 @@
   let marker = null;
   let accuracyCircle = null;
   let routeLine = null;
-  let watchId = null;
   let tracking = false;
+  let watchId = null;
   let points = [];
   let totalDistanceMeters = 0;
   let startTimeMs = null;
@@ -65,16 +65,6 @@
     }
   };
 
-  const setButtonState = () => {
-    if (tracking) {
-      startBtn.textContent = '■ Terminar ruta';
-      startBtn.classList.add('is-tracking');
-    } else {
-      startBtn.textContent = '▶ Iniciar ruta';
-      startBtn.classList.remove('is-tracking');
-    }
-  };
-
   const distanceBetweenMeters = (a, b) => {
     const toRad = (value) => value * (Math.PI / 180);
     const earthRadius = 6371000;
@@ -91,6 +81,16 @@
     return 2 * earthRadius * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
   };
 
+  const setButtonState = () => {
+    if (tracking) {
+      startBtn.textContent = '■ Detener ruta';
+      startBtn.classList.add('is-tracking');
+    } else {
+      startBtn.textContent = '▶ Iniciar nueva ruta';
+      startBtn.classList.remove('is-tracking');
+    }
+  };
+
   const updatePosition = (pos) => {
     const { latitude, longitude, accuracy } = pos.coords;
     const latLng = [latitude, longitude];
@@ -99,13 +99,11 @@
       const prev = points[points.length - 1];
       const segmentDistance = distanceBetweenMeters(prev, latLng);
 
-      // Reduce ruido por saltos bruscos del GPS.
+      // Filtra saltos de GPS y ruido muy pequeño.
       if (accuracy <= 50 && segmentDistance > 2 && segmentDistance < 200) {
         totalDistanceMeters += segmentDistance;
       }
     }
-
-    points.push(latLng);
 
     if (!marker) {
       marker = L.marker(latLng).addTo(map);
@@ -124,6 +122,8 @@
       accuracyCircle.setLatLng(latLng);
       accuracyCircle.setRadius(accuracy);
     }
+
+    points.push(latLng);
 
     if (!routeLine) {
       routeLine = L.polyline(points, {
@@ -156,7 +156,8 @@
     }
 
     if (tracking) {
-      stopTracking();
+      tracking = false;
+      setButtonState();
     }
   };
 
@@ -165,17 +166,19 @@
     totalDistanceMeters = 0;
     startTimeMs = Date.now();
 
+    if (timerId) {
+      clearInterval(timerId);
+      timerId = null;
+    }
+
+    timerId = setInterval(updateStats, 1000);
+    updateStats();
+
     if (routeLine) {
       map.removeLayer(routeLine);
       routeLine = null;
     }
 
-    if (timerId) {
-      clearInterval(timerId);
-    }
-
-    timerId = setInterval(updateStats, 1000);
-    updateStats();
     statusEl.textContent = 'Solicitando ubicación…';
 
     watchId = navigator.geolocation.watchPosition(updatePosition, handleError, {
@@ -194,19 +197,20 @@
       watchId = null;
     }
 
+    tracking = false;
+    setButtonState();
+
     if (timerId) {
       clearInterval(timerId);
       timerId = null;
     }
 
-    tracking = false;
-    setButtonState();
     updateStats();
 
     if (points.length > 1) {
-      statusEl.textContent = `Ruta terminada · Distancia: ${(totalDistanceMeters / 1000).toFixed(2)} km · Pasos: ${Math.round(totalDistanceMeters / AVG_STEP_LENGTH_METERS).toLocaleString('es-ES')}`;
+      statusEl.textContent = `Ruta detenida · Puntos registrados: ${points.length}`;
     } else {
-      statusEl.textContent = 'Ruta terminada.';
+      statusEl.textContent = 'Ruta detenida.';
     }
   };
 
@@ -218,7 +222,7 @@
     }
   });
 
-  updateStats();
   setButtonState();
-  statusEl.textContent = 'Pulsa "Iniciar ruta" para comenzar.';
+  updateStats();
+  statusEl.textContent = 'Pulsa "Iniciar nueva ruta" para comenzar.';
 })();

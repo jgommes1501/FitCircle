@@ -36,6 +36,13 @@ class Database {
             return $pdo;
         
         } catch(PDOException $e) {
+            $isInfinityFree = isset($_SERVER['HTTP_HOST']) && stripos($_SERVER['HTTP_HOST'], 'infinityfreeapp.com') !== false;
+            if ($isInfinityFree) {
+                die(
+                    "Error de conexión a Base de Datos: " . $e->getMessage() .
+                    " | Revisa DB_HOST, DB_NAME, DB_USER y DB_PASSWORD en config/config.php con los datos de MySQL de InfinityFree."
+                );
+            }
 
             die("Error de conexión a Base de Datos: " . $e->getMessage());
          

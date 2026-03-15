@@ -1,6 +1,5 @@
 <?php
 $email = $this->email ?? '';
-$pass = $this->pass ?? '';
 $errors = $this->errors ?? [];
 $notify = $this->notify ?? '';
 $error = $this->error ?? '';
@@ -37,7 +36,7 @@ $error = $this->error ?? '';
                 </div>
             <?php endif; ?>
 
-            <form method="POST" action="<?= URL ?>auth/validate_login" class="login-form">
+            <form method="POST" action="<?= ROUTE_URL ?>auth/validate_login" class="login-form">
                 
                 <!-- Token CSRF -->
                 <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
@@ -67,7 +66,6 @@ $error = $this->error ?? '';
                         type="password" 
                         id="password" 
                         name="pass" 
-                        value="<?= htmlspecialchars($pass) ?>" 
                         required
                         class="form-control <?= isset($errors['pass']) ? 'input-error' : '' ?>"
                         placeholder="••••••••"
@@ -84,6 +82,12 @@ $error = $this->error ?? '';
                     </div>
                 <?php endif; ?>
 
+                <?php if (isset($errors['csrf'])): ?>
+                    <div class="alert alert-danger">
+                        <?= htmlspecialchars($errors['csrf']) ?>
+                    </div>
+                <?php endif; ?>
+
                 <!-- Checkbox Recordar -->
                 <div class="form-group checkbox">
                     <input type="checkbox" id="remember" name="remember">
@@ -96,6 +100,7 @@ $error = $this->error ?? '';
                 <!-- Enlaces adicionales -->
                 <div class="login-links">
                     <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    <a href="<?= ROUTE_URL ?>auth/register">Crear cuenta</a>
                 </div>
 
             </form>

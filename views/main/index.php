@@ -12,10 +12,11 @@
     <header>
         <h1>FitCircle</h1>
         <nav class="top-nav">
-            <a href="<?= URL ?>main/index">Inicio</a>
-            <a href="<?= URL ?>paginas/ruta.html">Rutas</a>
-            <a href="<?= URL ?>paginas/retos.html">Retos</a>
-            <a href="<?= URL ?>auth/logout" class="logout-btn">Salir</a>
+            <a href="<?= ROUTE_URL ?>main/index">Inicio</a>
+            <a href="<?= ROUTE_URL ?>ruta/index">Rutas</a>
+            <a href="<?= ROUTE_URL ?>retos/index">Retos</a>
+            <a href="<?= ROUTE_URL ?>perfil/index">Perfil</a>
+            <a href="<?= ROUTE_URL ?>auth/logout" class="logout-btn">Salir</a>
         </nav>
     </header>
 
@@ -38,15 +39,15 @@
         <section class="cards">
             <div class="card">
                 <h3>Pasos</h3>
-                <p class="metric">8.420</p>
+                <p id="main-steps" class="metric">0</p>
             </div>
             <div class="card">
-                <h3>Calorías</h3>
-                <p class="metric">560 kcal</p>
+                <h3>Tiempo</h3>
+                <p id="main-time" class="metric">00:00</p>
             </div>
             <div class="card">
                 <h3>Distancia</h3>
-                <p class="metric">6,2 km</p>
+                <p id="main-distance" class="metric">0.00 km</p>
             </div>
             <div class="card">
                 <h3>Pulso</h3>

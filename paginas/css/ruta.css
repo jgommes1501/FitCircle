@@ -20,16 +20,55 @@
       padding-bottom: 70px;
     }
 
+    footer {
+      background: #000000;
+      color: var(--blanco);
+      text-align: center;
+      padding: 1.25rem 1rem;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+    }
+
     /* HEADER */
     header {
-      background-color: var(--rojo-principal);
+      background: linear-gradient(135deg, var(--rojo-principal), var(--rojo-secundario));
       color: var(--blanco);
       padding: 1rem;
       text-align: center;
     }
 
     header h1 {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .top-nav {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .top-nav a {
+      color: var(--blanco);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      transition: background 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .top-nav a:hover,
+    .top-nav a.active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .logout-btn {
+      font-weight: 600;
     }
 
     /* CONTENEDOR */
@@ -48,15 +87,78 @@
       border-radius: 30px;
       font-weight: bold;
       margin-bottom: 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
-    /* MAPA */
-    .map {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
+    .start-route:hover {
+      background: var(--rojo-principal);
+    }
+
+    .start-route.is-tracking {
+      background: #212121;
+    }
+
+    .route-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .route-stat {
+      background: var(--blanco);
       border-radius: 10px;
+      padding: 0.75rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .route-stat .label {
+      display: block;
+      color: var(--gris-medio);
+      font-size: 0.82rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .route-stat strong {
+      color: var(--rojo-principal);
+      font-size: 1rem;
+    }
+
+    /* MAPA GPS */
+    .live-location {
+      background-color: var(--blanco);
+      border-radius: 12px;
+      padding: 1rem;
       margin-bottom: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .live-location h2 {
+      color: var(--rojo-principal);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .live-location-status {
+      color: var(--gris-medio);
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .live-location-map {
+      width: 100%;
+      height: 260px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #e6e6e6;
+    }
+
+    .gps-help {
+      color: var(--gris-medio);
+      font-size: 0.82rem;
+      margin-top: 0.6rem;
     }
 
     /* TARJETAS */

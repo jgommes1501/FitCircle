@@ -13,7 +13,7 @@ class Perfil extends Controller {
         // Verificar si el usuario está autenticado
         if (!is_logged_in()) {
             // Redirigir al login si no está autenticado
-            header("Location: " . URL . "auth/login");
+            header("Location: " . ROUTE_URL . "auth/login");
             exit();
         }
 

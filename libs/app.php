@@ -46,7 +46,14 @@ class App {
     public function parseUrl() {
 
         if (isset($_GET['url'])) {
-            return explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
+            $cleanUrl = filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL);
+            if ($cleanUrl === '' || $cleanUrl === false) {
+                return [];
+            }
+
+            return array_values(array_filter(explode('/', $cleanUrl), function ($segment) {
+                return $segment !== '';
+            }));
         }
         return null;
     }

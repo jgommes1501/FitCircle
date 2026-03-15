@@ -11,10 +11,10 @@
     <header>
         <h1>FitCircle</h1>
         <nav class="top-nav">
-            <a href="<?= URL ?>">Inicio</a>
-            <a href="<?= URL ?>paginas/ruta.html">Rutas</a>
-            <a href="<?= URL ?>paginas/retos.html">Retos</a>
-            <a href="<?= URL ?>perfil/index" class="profile-icon active" aria-label="Perfil">
+            <a href="<?= ROUTE_URL ?>main/index">Inicio</a>
+            <a href="<?= ROUTE_URL ?>ruta/index">Rutas</a>
+            <a href="<?= ROUTE_URL ?>retos/index">Retos</a>
+            <a href="<?= ROUTE_URL ?>perfil/index" class="profile-icon active" aria-label="Perfil">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
                     <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" stroke-width="2"/>
@@ -73,26 +73,26 @@
         </section>
 
         <div style="margin-top: 2rem; text-align: center;">
-            <a href="<?= URL ?>auth/logout" style="display: inline-block; background: #c62828; color: white; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background 0.3s;">
+            <a href="<?= ROUTE_URL ?>auth/logout" style="display: inline-block; background: #c62828; color: white; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background 0.3s;">
                 Cerrar Sesión
             </a>
         </div>
     </main>
 
     <nav class="bottom-nav">
-        <a href="<?= URL ?>">
+        <a href="<?= ROUTE_URL ?>main/index">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7"/><path d="M9 22V12h6v10"/></svg>
             Inicio
         </a>
-        <a href="<?= URL ?>paginas/ruta.html">
+        <a href="<?= ROUTE_URL ?>ruta/index">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg>
             Rutas
         </a>
-        <a href="<?= URL ?>paginas/retos.html">
+        <a href="<?= ROUTE_URL ?>retos/index">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
             Retos
         </a>
-        <a href="<?= URL ?>perfil/index" class="active">
+        <a href="<?= ROUTE_URL ?>perfil/index" class="active">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
             Perfil
         </a>

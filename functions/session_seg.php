@@ -7,19 +7,25 @@
 function sec_session_start() {
     $secure = false; // Cambiar a true si usas HTTPS
     $httponly = true;
-    $samesite = 'Strict';
+    $samesite = 'Lax';
+    $host = parse_url('http://' . ($_SERVER['HTTP_HOST'] ?? 'localhost'), PHP_URL_HOST);
+    // Usar dominio vacío evita conflictos entre hostnames canónicos/redirecciones del hosting compartido.
+    $cookieDomain = '';
+    $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/'));
+    $cookiePath = rtrim($scriptDir, '/');
+    $cookiePath = ($cookiePath === '') ? '/' : $cookiePath . '/';
     
     if (PHP_VERSION_ID >= 70300) {
         session_set_cookie_params([
             'lifetime' => 0,
-            'path' => '/',
-            'domain' => $_SERVER['HTTP_HOST'],
+            'path' => $cookiePath,
+            'domain' => $cookieDomain,
             'secure' => $secure,
             'httponly' => $httponly,
             'samesite' => $samesite
         ]);
     } else {
-        session_set_cookie_params(0, '/', $_SERVER['HTTP_HOST'], $secure, $httponly);
+        session_set_cookie_params(0, $cookiePath, $cookieDomain, $secure, $httponly);
         header('SameSite=Strict', false);
     }
     
@@ -66,7 +72,7 @@ function get_user_email() {
 function require_login() {
     sec_session_start();
     if (!is_logged_in()) {
-        header("Location: " . URL . "auth/login");
+        header("Location: " . ROUTE_URL . "auth/login");
         exit();
     }
 }

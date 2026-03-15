@@ -7,8 +7,8 @@ class Main extends Controller {
     }
 
     function index() {
-        // Iniciar sesión
-        sec_session_start();
+        // Iniciar sesión segura y exigir autenticación
+        require_login();
 
         // Comprobar si existe alguna notificación
         if (isset($_SESSION['notify'])) {

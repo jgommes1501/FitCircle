@@ -1,7 +1,12 @@
 DirectoryIndex index.php index.html
 
 <IfModule mod_rewrite.c>
+    Options -MultiViews
     RewriteEngine On
+    RewriteBase /
+
+    # Evitar reescritura sobre el propio front controller
+    RewriteRule ^index\.php$ - [L]
 
     # No reescribir si el recurso existe físicamente
     RewriteCond %{REQUEST_FILENAME} -f [OR]

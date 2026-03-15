@@ -1,8 +1,5 @@
 -- Script para crear la base de datos y tabla de usuarios para FitCircle
 
-CREATE DATABASE IF NOT EXISTS fitcircle;
-USE fitcircle;
-
 -- Tabla de usuarios
 CREATE TABLE IF NOT EXISTS users (
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,

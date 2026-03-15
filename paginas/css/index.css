@@ -120,6 +120,10 @@ header h1 {
   background: var(--rojo-principal);
 }
 
+.start-route.is-tracking {
+  background: #212121;
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

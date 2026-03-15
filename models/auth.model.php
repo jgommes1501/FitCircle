@@ -38,6 +38,35 @@ class authModel extends Model {
         }
     }
 
+    public function email_exists($email) {
+        try {
+            $sql = "SELECT id FROM users WHERE email = :email LIMIT 1";
+            $fp = $this->db->connect();
+            $stmt = $fp->prepare($sql);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR, 100);
+            $stmt->execute();
+
+            return (bool) $stmt->fetchColumn();
+        } catch (PDOException $e) {
+            die("Error en modelo auth (email_exists): " . $e->getMessage());
+        }
+    }
+
+    public function create_user($name, $email, $passwordHash) {
+        try {
+            $sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+            $fp = $this->db->connect();
+            $stmt = $fp->prepare($sql);
+            $stmt->bindParam(':name', $name, PDO::PARAM_STR, 100);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR, 100);
+            $stmt->bindParam(':password', $passwordHash, PDO::PARAM_STR, 60);
+
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            die("Error en modelo auth (create_user): " . $e->getMessage());
+        }
+    }
+
 }
 
 ?>
