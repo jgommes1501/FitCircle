@@ -5,6 +5,7 @@
   const stepsEl = document.getElementById('main-steps');
   const distanceEl = document.getElementById('main-distance');
   const timeEl = document.getElementById('main-time');
+  const caloriesEl = document.getElementById('main-calories');
 
   if (!statusEl || !mapEl || !startBtn || !stepsEl || !distanceEl || !timeEl) return;
 
@@ -43,6 +44,8 @@
   let timerId = null;
 
   const AVG_STEP_LENGTH_METERS = 0.78;
+  // Calorías: MET × peso(kg) × tiempo(h). Peso de referencia 70 kg.
+  const WEIGHT_KG = 70;
 
   const formatTime = (secondsTotal) => {
     const minutes = Math.floor(secondsTotal / 60);
@@ -60,8 +63,16 @@
     if (startTimeMs) {
       const elapsed = Math.max(0, Math.floor((Date.now() - startTimeMs) / 1000));
       timeEl.textContent = formatTime(elapsed);
+
+      // Calorías quemadas: MET × peso × tiempo(h)
+      const hours = elapsed / 3600;
+      const speedKmh = hours > 0 ? km / hours : 0;
+      const met = speedKmh >= 7 ? 8.0 : speedKmh >= 4 ? 4.5 : 3.0;
+      const kcal = Math.round(met * WEIGHT_KG * hours);
+      if (caloriesEl) caloriesEl.textContent = `${kcal} kcal`;
     } else {
       timeEl.textContent = '00:00';
+      if (caloriesEl) caloriesEl.textContent = '0 kcal';
     }
   };
 

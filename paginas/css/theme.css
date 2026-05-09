@@ -1,0 +1,304 @@
+:root {
+  --fit-red-700: #b71c1c;
+  --fit-red-500: #e53935;
+
+  --theme-bg: #f5f7fb;
+  --theme-surface: #ffffff;
+  --theme-surface-2: #f7f8fc;
+  --theme-text: #10131a;
+  --theme-muted: #525b6a;
+  --theme-border: rgba(16, 19, 26, 0.12);
+  --theme-input-bg: #ffffff;
+  --theme-input-text: #10131a;
+  --theme-input-border: rgba(16, 19, 26, 0.2);
+}
+
+body.dark-mode {
+  --theme-bg: #050607;
+  --theme-surface: #0d1117;
+  --theme-surface-2: #141922;
+  --theme-text: #ffffff;
+  --theme-muted: rgba(255, 255, 255, 0.78);
+  --theme-border: rgba(255, 255, 255, 0.08);
+  --theme-input-bg: rgba(255, 255, 255, 0.06);
+  --theme-input-text: #ffffff;
+  --theme-input-border: rgba(255, 255, 255, 0.14);
+}
+
+body,
+body.login-page {
+  background: var(--theme-bg) !important;
+  color: var(--theme-text) !important;
+}
+
+header {
+  background: #000 !important;
+  color: #fff !important;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.brand-logo-wrap {
+  margin: 0 0 0.45rem;
+}
+
+.brand-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo {
+  height: 120px !important;
+  width: auto !important;
+  max-width: min(680px, 92vw) !important;
+  display: block;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.top-nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.42rem 0.85rem;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.top-nav a:hover,
+.top-nav a.active {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.profile-icon {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+.nav-avatar-img {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  min-height: 24px;
+  max-height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.container {
+  color: var(--theme-text) !important;
+}
+
+.alert,
+.card,
+.profile-header,
+.challenge,
+.historial-card,
+.route-card,
+.feature-card,
+.story-panel,
+.quick-launch,
+.hero-main,
+.live-route-section,
+.save-route-panel,
+.form-card,
+.empty-state,
+.login-box,
+.tab-shell,
+.tab-shell-wide,
+.hero-banner,
+.hist-sum-card,
+.route-stat {
+  background: linear-gradient(180deg, var(--theme-surface), var(--theme-surface-2)) !important;
+  border: 1px solid var(--theme-border) !important;
+  color: var(--theme-text) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.hero-inner h2,
+.hero-inner p,
+.story-panel-inner h3,
+.story-panel-inner p,
+.feature-card h3,
+.feature-card p,
+.live-route-section h3,
+.live-location-status,
+.gps-help,
+.route-stat .label,
+.route-stat strong,
+.save-route-panel h2,
+.save-route-panel p,
+.profile-header p,
+.profile-header small,
+.card p,
+.card label,
+.challenge p,
+.historial-card,
+.login-header p,
+.form-group label,
+.form-subtitle,
+.section-title,
+.empty-state p,
+.empty-state h3,
+.hist-sum-card span,
+.hist-sum-card strong,
+.route-title,
+.route-distance,
+.metric-item,
+.author-name,
+.route-author {
+  color: var(--theme-text) !important;
+}
+
+.hero-inner p,
+.story-panel-inner p,
+.feature-card p,
+.challenge p,
+.empty-state p,
+.form-subtitle,
+.gps-help,
+.live-location-status,
+.profile-header small,
+.historial-count,
+.date,
+.route-author,
+.metric-item {
+  color: var(--theme-muted) !important;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-go-route,
+.start-route,
+.save-route-btn,
+.login-btn,
+.logout-btn,
+.btn-ghost,
+.btn-login,
+.btn-logout {
+  background: linear-gradient(120deg, var(--fit-red-700), var(--fit-red-500)) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.form-control,
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='number'],
+textarea,
+select {
+  background: var(--theme-input-bg) !important;
+  color: var(--theme-input-text) !important;
+  border: 1px solid var(--theme-input-border) !important;
+}
+
+.form-control::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: color-mix(in srgb, var(--theme-input-text) 55%, transparent) !important;
+}
+
+body:not(.dark-mode) .hero-overlay,
+body:not(.dark-mode) .story-panel-overlay {
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.64), rgba(198, 40, 40, 0.26)) !important;
+}
+
+body.dark-mode .hero-overlay,
+body.dark-mode .story-panel-overlay {
+  background: linear-gradient(150deg, rgba(4, 4, 6, 0.84), rgba(183, 28, 28, 0.62)) !important;
+}
+
+body:not(.dark-mode) footer {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+body.dark-mode footer {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+.theme-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.theme-card p {
+  margin-top: 0.3rem;
+}
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.theme-switch input {
+  width: 44px;
+  height: 24px;
+  appearance: none;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.25);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+}
+
+.theme-switch input::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+
+.theme-switch input:checked {
+  background: linear-gradient(120deg, var(--fit-red-700), var(--fit-red-500));
+}
+
+.theme-switch input:checked::before {
+  transform: translateX(20px);
+}
+
+#theme-toggle-label {
+  font-weight: 700;
+  color: var(--theme-text);
+}
+
+@media (max-width: 768px) {
+  .brand-logo {
+    height: 92px !important;
+    max-width: min(520px, 88vw) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-logo {
+    height: 72px !important;
+    max-width: min(420px, 84vw) !important;
+  }
+}

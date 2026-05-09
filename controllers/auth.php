@@ -128,6 +128,7 @@ class Auth extends Controller {
             $_SESSION['user_id'] = $user->id;
             $_SESSION['user_name'] = $user->name;
             $_SESSION['user_email'] = $user->email;
+            $_SESSION['user_avatar'] = $user->avatar_path ?? null;
             $_SESSION['login_time'] = time();
 
             // Redirigir a página de inicio

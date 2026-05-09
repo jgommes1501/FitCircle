@@ -5,17 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $this->title ?> - FitCircle</title>
     <link rel="stylesheet" href="<?= URL ?>paginas/css/retos.css">
+    <link rel="stylesheet" href="<?= URL ?>paginas/css/theme.css?v=2">
 </head>
 <body>
 
     <header>
-        <h1>FitCircle</h1>
+        <h1 class="brand-logo-wrap">
+            <a href="<?= ROUTE_URL ?>main/index" class="brand-logo-link" aria-label="FitCircle inicio">
+                <img src="<?= URL ?>paginas/img/FitCircle.png" alt="FitCircle" class="brand-logo">
+            </a>
+        </h1>
         <nav class="top-nav">
             <a href="<?= ROUTE_URL ?>main/index">Inicio</a>
             <a href="<?= ROUTE_URL ?>ruta/index">Rutas</a>
             <a href="<?= ROUTE_URL ?>retos/index" class="active">Retos</a>
-            <a href="<?= ROUTE_URL ?>perfil/index">Perfil</a>
-            <a href="<?= ROUTE_URL ?>auth/logout" class="logout-btn">Salir</a>
+            <a href="<?= ROUTE_URL ?>perfil/index" class="profile-icon" aria-label="Perfil">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
+                    <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" stroke-width="2"/>
+                </svg>
+            </a>
+            <?php if ($this->logged_in): ?>
+                <a href="<?= ROUTE_URL ?>auth/logout" class="logout-btn">Salir</a>
+            <?php endif; ?>
         </nav>
     </header>
 
@@ -47,28 +59,11 @@
 
     </main>
 
-    <nav class="bottom-nav">
-        <a href="<?= ROUTE_URL ?>main/index">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7"/><path d="M9 22V12h6v10"/></svg>
-            Inicio
-        </a>
-        <a href="<?= ROUTE_URL ?>ruta/index">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg>
-            Rutas
-        </a>
-        <a href="<?= ROUTE_URL ?>retos/index" class="active">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            Retos
-        </a>
-        <a href="<?= ROUTE_URL ?>perfil/index">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-            Perfil
-        </a>
-    </nav>
-
     <footer>
-        <p>© 2025 · FitCircle</p>
+        <p>© 2026 · FitCircle</p>
     </footer>
+
+    <script src="<?= URL ?>paginas/js/theme-mode.js?v=2"></script>
 
 </body>
 </html>

@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password CHAR(60) NOT NULL,
+    avatar_path VARCHAR(255) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -44,3 +45,30 @@ INSERT IGNORE INTO users (name, email, password) VALUES
 INSERT IGNORE INTO user_roles (user_id, role_id) VALUES
 (1, 1),
 (2, 2);
+
+-- Rutas guardadas por los usuarios
+CREATE TABLE IF NOT EXISTS routes (
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    title VARCHAR(120) NOT NULL,
+    distance_m DECIMAL(10,2) NOT NULL DEFAULT 0,
+    duration_s INT UNSIGNED NOT NULL DEFAULT 0,
+    steps INT UNSIGNED NOT NULL DEFAULT 0,
+    calories INT UNSIGNED NOT NULL DEFAULT 0,
+    path_json MEDIUMTEXT NULL,
+    is_public TINYINT(1) NOT NULL DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_routes_user_id (user_id)
+);
+
+-- Reacciones/me gustas de rutas
+CREATE TABLE IF NOT EXISTS route_likes (
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    route_id INT NOT NULL,
+    user_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_route_likes_route_id (route_id),
+    INDEX idx_route_likes_user_id (user_id),
+    UNIQUE KEY unique_route_like (route_id, user_id)
+);

@@ -12,13 +12,18 @@ $notify = $this->notify ?? '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $this->title ?> - FitCircle</title>
     <link rel="stylesheet" href="<?= URL ?>paginas/css/login.css">
+    <link rel="stylesheet" href="<?= URL ?>paginas/css/theme.css?v=2">
 </head>
 <body class="login-page">
 
     <div class="login-container">
         <div class="login-box">
             <div class="login-header">
-                <h1>FitCircle</h1>
+                <h1 class="brand-logo-wrap">
+                    <a href="<?= ROUTE_URL ?>main/index" class="brand-logo-link" aria-label="FitCircle inicio">
+                        <img src="<?= URL ?>paginas/img/FitCircle.png" alt="FitCircle" class="brand-logo">
+                    </a>
+                </h1>
                 <p>Crea tu cuenta</p>
             </div>
 
@@ -115,6 +120,8 @@ $notify = $this->notify ?? '';
 
         </div>
     </div>
+
+    <script src="<?= URL ?>paginas/js/theme-mode.js?v=2"></script>
 
 </body>
 </html>

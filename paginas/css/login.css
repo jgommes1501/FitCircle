@@ -50,16 +50,27 @@ body.login-page {
 }
 
 .login-header {
-  background: linear-gradient(135deg, var(--rojo-principal), var(--rojo-secundario));
+  background: #000000;
   color: var(--blanco);
   padding: 2rem 1rem;
   text-align: center;
 }
 
-.login-header h1 {
-  font-size: 2rem;
+.brand-logo-wrap {
   margin-bottom: 0.5rem;
-  font-weight: bold;
+}
+
+.brand-logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-logo {
+  height: 28px;
+  width: auto;
+  max-width: min(180px, 60vw);
+  display: block;
 }
 
 .login-header p {
@@ -204,6 +215,22 @@ body.login-page {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.back-link {
+  color: var(--gris-oscuro);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.back-link:hover {
+  color: var(--rojo-principal);
 }
 
 .forgot-password {
@@ -220,12 +247,27 @@ body.login-page {
 
 /* Estilos responsivos */
 @media (max-width: 480px) {
+  body.login-page {
+    padding: 0.75rem;
+    align-items: stretch;
+  }
+
+  .login-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .login-box {
+    width: 100%;
+    border-radius: 10px;
+  }
+
   .login-header {
     padding: 1.5rem 1rem;
   }
 
-  .login-header h1 {
-    font-size: 1.5rem;
+  .brand-logo {
+    height: 24px;
   }
 
   .login-form {
@@ -239,5 +281,12 @@ body.login-page {
   .alert {
     font-size: 0.9rem;
     padding: 0.8rem;
+  }
+
+  .back-link,
+  .login-links a,
+  .btn-login {
+    width: 100%;
+    text-align: center;
   }
 }

@@ -4,99 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $this->title ?> - FitCircle</title>
-    <link rel="stylesheet" href="<?= URL ?>paginas/css/index.css">
+    <link rel="stylesheet" href="<?= URL ?>paginas/css/perfil.css">
+    <link rel="stylesheet" href="<?= URL ?>paginas/css/theme.css?v=2">
 </head>
 <body>
 
+    <?php
+    $profile = $this->profile;
+    $stats = $this->stats;
+    $recentRoutes = $this->recent_routes ?? [];
+    $avatar = !empty($profile->avatar_path) ? (URL . ltrim($profile->avatar_path, '/')) : null;
+    $navAvatar = !empty($_SESSION['user_avatar']) ? (URL . ltrim($_SESSION['user_avatar'], '/')) : null;
+    ?>
+
     <header>
-        <h1>FitCircle</h1>
+        <h1 class="brand-logo-wrap">
+            <a href="<?= ROUTE_URL ?>main/index" class="brand-logo-link" aria-label="FitCircle inicio">
+                <img src="<?= URL ?>paginas/img/FitCircle.png" alt="FitCircle" class="brand-logo">
+            </a>
+        </h1>
         <nav class="top-nav">
             <a href="<?= ROUTE_URL ?>main/index">Inicio</a>
             <a href="<?= ROUTE_URL ?>ruta/index">Rutas</a>
             <a href="<?= ROUTE_URL ?>retos/index">Retos</a>
             <a href="<?= ROUTE_URL ?>perfil/index" class="profile-icon active" aria-label="Perfil">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
-                    <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" stroke-width="2"/>
-                </svg>
+                <?php if ($navAvatar): ?>
+                    <img src="<?= htmlspecialchars($navAvatar) ?>" alt="Perfil" class="nav-avatar-img" width="24" height="24" style="width:24px;height:24px;min-width:24px;max-width:24px;min-height:24px;max-height:24px;display:block;object-fit:cover;border-radius:50%;">
+                <?php else: ?>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
+                        <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" stroke-width="2"/>
+                    </svg>
+                <?php endif; ?>
             </a>
+            <a href="<?= ROUTE_URL ?>auth/logout" class="logout-btn">Salir</a>
         </nav>
     </header>
 
     <main class="container">
-        <div class="profile-header" style="background: linear-gradient(135deg, #c62828, #e53935); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; text-align: center;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">👤</div>
-            <h1><?= htmlspecialchars($this->user_name) ?></h1>
-            <p><?= htmlspecialchars($this->user_email) ?></p>
+
+        <?php if (!empty($this->notify)): ?>
+            <div class="alert alert-success"><?= htmlspecialchars($this->notify) ?></div>
+        <?php endif; ?>
+
+        <?php if (!empty($this->errors)): ?>
+            <?php foreach ($this->errors as $msg): ?>
+                <div class="alert alert-error"><?= htmlspecialchars($msg) ?></div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+
+        <section class="card theme-card">
+            <div>
+                <h3>Apariencia</h3>
+                <p>Activa el modo oscuro para ver FitCircle con la estética actual oscura.</p>
+            </div>
+            <label class="theme-switch" for="theme-toggle">
+                <input type="checkbox" id="theme-toggle" aria-label="Activar modo oscuro">
+                <span id="theme-toggle-label">Modo claro</span>
+            </label>
+        </section>
+
+        <section class="profile-header">
+            <div class="avatar-wrap">
+                <?php if ($avatar): ?>
+                    <img src="<?= htmlspecialchars($avatar) ?>" alt="Foto de perfil" class="avatar-img" width="82" height="82" style="width:82px;height:82px;min-width:82px;max-width:82px;min-height:82px;max-height:82px;display:block;object-fit:cover;border-radius:50%;">
+                <?php else: ?>
+                    <div class="avatar-fallback">👤</div>
+                <?php endif; ?>
+            </div>
+            <div>
+                <h2><?= htmlspecialchars($profile->name) ?></h2>
+                <p><?= htmlspecialchars($profile->email) ?></p>
+                <small>Miembro desde <?= date('d/m/Y', strtotime($profile->created_at)) ?></small>
+            </div>
+        </section>
+
+        <section class="card">
+            <h3>Editar perfil</h3>
+            <form method="POST" action="<?= ROUTE_URL ?>perfil/update" enctype="multipart/form-data" class="edit-form">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($this->csrf_token) ?>">
+
+                <label>
+                    Nombre
+                    <input type="text" name="name" required maxlength="100" value="<?= htmlspecialchars($profile->name) ?>">
+                </label>
+
+                <label>
+                    Foto de perfil (JPG, PNG, WEBP o GIF · máx 2MB)
+                    <input type="file" name="avatar" accept="image/png,image/jpeg,image/webp,image/gif">
+                </label>
+
+                <button type="submit">Guardar cambios</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h3>Resumen de actividad</h3>
+            <div class="stats-grid">
+                <div>
+                    <strong><?= (int) ($stats->routes_count ?? 0) ?></strong>
+                    <span>Rutas completadas</span>
+                </div>
+                <div>
+                    <strong><?= number_format(((float) ($stats->total_distance_m ?? 0)) / 1000, 2, ',', '.') ?> km</strong>
+                    <span>Distancia total</span>
+                </div>
+                <div>
+                    <strong><?= number_format((int) ($stats->total_steps ?? 0), 0, ',', '.') ?></strong>
+                    <span>Pasos totales</span>
+                </div>
+                <div>
+                    <strong><?= number_format((int) ($stats->total_calories ?? 0), 0, ',', '.') ?> kcal</strong>
+                    <span>Calorías</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="card-title-row">
+                <h3>Historial reciente</h3>
+                <a href="<?= ROUTE_URL ?>ruta/index?tab=historial">Ver historial completo</a>
+                            <a href="<?= ROUTE_URL ?>ruta/historial">Ver historial completo</a>
+            </div>
+
+            <?php if (empty($recentRoutes)): ?>
+                <p class="empty">Todavía no has guardado rutas.</p>
+            <?php else: ?>
+                <div class="history-list">
+                    <?php foreach ($recentRoutes as $route): ?>
+                        <article class="history-item">
+                            <h4><?= htmlspecialchars($route->title) ?></h4>
+                            <p>
+                                <?= number_format(((float) $route->distance_m) / 1000, 2, ',', '.') ?> km ·
+                                <?= (int) round($route->duration_s / 60) ?> min ·
+                                <?= number_format((int) $route->steps, 0, ',', '.') ?> pasos
+                            </p>
+                            <small><?= date('d/m/Y H:i', strtotime($route->created_at)) ?></small>
+                        </article>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </section>
+
+        <div class="action-row">
+            <a href="<?= ROUTE_URL ?>ruta/index" class="btn-secondary">Ir a Rutas</a>
         </div>
 
-        <section style="background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
-            <h2 style="margin-bottom: 1.5rem; color: #2e2e2e;">Información Personal</h2>
-            
-            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f2f2f2;">
-                <span style="color: #6b6b6b;">Nombre:</span>
-                <strong><?= htmlspecialchars($this->user_name) ?></strong>
-            </div>
-            
-            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #f2f2f2;">
-                <span style="color: #6b6b6b;">Email:</span>
-                <strong><?= htmlspecialchars($this->user_email) ?></strong>
-            </div>
-
-            <div style="padding: 1rem 0;">
-                <span style="color: #6b6b6b;">Miembro desde:</span>
-                <strong><?= date('d/m/Y') ?></strong>
-            </div>
-        </section>
-
-        <section style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);">
-            <h2 style="margin-bottom: 1.5rem; color: #2e2e2e;">Estadísticas</h2>
-            
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-                <div style="text-align: center;">
-                    <div style="font-size: 1.8rem; color: #c62828; font-weight: bold;">0</div>
-                    <div style="color: #6b6b6b; font-size: 0.9rem;">Rutas completadas</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 1.8rem; color: #c62828; font-weight: bold;">0</div>
-                    <div style="color: #6b6b6b; font-size: 0.9rem;">Retos ganados</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 1.8rem; color: #c62828; font-weight: bold;">0</div>
-                    <div style="color: #6b6b6b; font-size: 0.9rem;">km recorridos</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 1.8rem; color: #c62828; font-weight: bold;">0</div>
-                    <div style="color: #6b6b6b; font-size: 0.9rem;">Calorías quemadas</div>
-                </div>
-            </div>
-        </section>
-
-        <div style="margin-top: 2rem; text-align: center;">
-            <a href="<?= ROUTE_URL ?>auth/logout" style="display: inline-block; background: #c62828; color: white; padding: 0.75rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: background 0.3s;">
-                Cerrar Sesión
-            </a>
+        <div class="action-row">
+            <a href="<?= ROUTE_URL ?>auth/logout" class="btn-logout">Cerrar sesión</a>
         </div>
     </main>
 
-    <nav class="bottom-nav">
-        <a href="<?= ROUTE_URL ?>main/index">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7"/><path d="M9 22V12h6v10"/></svg>
-            Inicio
-        </a>
-        <a href="<?= ROUTE_URL ?>ruta/index">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/></svg>
-            Rutas
-        </a>
-        <a href="<?= ROUTE_URL ?>retos/index">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            Retos
-        </a>
-        <a href="<?= ROUTE_URL ?>perfil/index" class="active">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-            Perfil
-        </a>
-    </nav>
+    <footer>
+        <p>© 2026 · FitCircle</p>
+    </footer>
+
+    <script src="<?= URL ?>paginas/js/theme-mode.js?v=2"></script>
 
 </body>
 </html>
