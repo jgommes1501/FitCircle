@@ -1,6 +1,17 @@
 <?php
 
-    // Configuración de la aplicación
+/**
+ * ============================================================
+ * CONFIGURACIÓN GLOBAL — config/config.php
+ * ============================================================
+ * Define todas las constantes que usa la aplicación:
+ * rutas de carpetas, URL base, datos de la base de datos
+ * y los controlador/método por defecto.
+ * Se carga una sola vez desde index.php.
+ * ============================================================
+ */
+
+    // Nombre y versión de la aplicación
     define('APP_NAME', 'FitCircle');
     define('APP_VERSION', '1.0');
 

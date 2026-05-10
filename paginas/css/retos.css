@@ -5,6 +5,10 @@
       --gris-medio: #6b6b6b;
       --gris-claro: #f2f2f2;
       --blanco: #ffffff;
+      --verde: #2e7d32;
+      --verde-claro: #e8f5e9;
+      --naranja: #e65100;
+      --shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     * {
@@ -92,52 +96,419 @@
     /* CONTENEDOR */
     .container {
       padding: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ALERTAS */
+    .alert {
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .alert-success {
+      background: var(--verde-claro);
+      color: var(--verde);
+      border: 1px solid #a5d6a7;
+    }
+
+    .alert-error {
+      background: #ffebee;
+      color: var(--rojo-principal);
+      border: 1px solid #ef9a9a;
+    }
+
+    .alert ul {
+      margin-left: 1rem;
+    }
+
+    /* GUEST BANNER */
+    .guest-banner {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--blanco);
+      border-left: 5px solid var(--rojo-secundario);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .guest-banner-icon {
+      font-size: 2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .guest-banner strong {
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .guest-banner p {
+      font-size: 0.88rem;
+      color: var(--gris-medio);
+      margin-bottom: 0.8rem;
+    }
+
+    .guest-banner .btn + .btn {
+      margin-left: 0.5rem;
+    }
+
+    /* TABS */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tab-btn {
+      padding: 0.55rem 1.2rem;
+      border-radius: 20px;
+      border: 2px solid var(--rojo-secundario);
+      background: transparent;
+      color: var(--rojo-secundario);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tab-btn.active,
+    .tab-btn:hover {
+      background: var(--rojo-secundario);
+      color: var(--blanco);
+    }
+
+    /* TAB PANELS */
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.1rem;
+      color: var(--gris-oscuro);
+    }
+
+    /* BOTONES */
+    .btn {
+      display: inline-block;
+      padding: 0.55rem 1.1rem;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s, background 0.2s;
+    }
+
+    .btn:hover { opacity: 0.85; }
+
+    .btn-primary {
+      background: var(--rojo-secundario);
+      color: var(--blanco);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--rojo-secundario);
+      color: var(--rojo-secundario);
+    }
+
+    .btn-sm {
+      padding: 0.35rem 0.8rem;
+      font-size: 0.82rem;
+    }
+
+    .btn-danger-outline {
+      border-color: var(--rojo-principal);
+      color: var(--rojo-principal);
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      line-height: 1;
+    }
+
+    .btn-danger { color: var(--rojo-principal); }
+    .btn-muted  { color: var(--gris-medio); }
+
+    .btn-icon:hover { background: rgba(0,0,0,0.07); }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--gris-medio);
+      font-size: 0.9rem;
     }
 
     /* TARJETAS DE RETOS */
     .challenge {
       background-color: var(--blanco);
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1rem 1.1rem;
       margin-bottom: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      border-left: 6px solid var(--rojo-secundario);
+      box-shadow: var(--shadow);
+      border-left: 5px solid var(--rojo-secundario);
+    }
+
+    .challenge.completed {
+      border-left-color: var(--verde);
+      opacity: 0.85;
+    }
+
+    .challenge.expired {
+      border-left-color: var(--gris-medio);
+      opacity: 0.75;
+    }
+
+    .challenge-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+      gap: 0.5rem;
     }
 
     .challenge h3 {
       color: var(--rojo-principal);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
     }
 
-    .challenge p {
+    .challenge-desc {
       color: var(--gris-medio);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .challenge-meta {
+      color: var(--gris-medio);
+      font-size: 0.82rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .creator-tag {
+      font-size: 0.78rem;
+      color: var(--gris-medio);
+      white-space: nowrap;
+    }
+
+    /* BADGES */
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-right: 0.25rem;
+    }
+
+    .badge-mensual  { background: #e3f2fd; color: #1565c0; }
+    .badge-semanal  { background: #fff3e0; color: var(--naranja); }
+    .badge-type     { background: #f3e5f5; color: #6a1b9a; }
+    .badge-private  { background: #eeeeee; color: #555; }
+
+    /* PROGRESO */
+    .progress-wrap {
+      margin-bottom: 0.6rem;
     }
 
     .progress {
-      background-color: var(--gris-claro);
+      background-color: #eeeeee;
       border-radius: 20px;
       height: 10px;
       overflow: hidden;
+      margin-bottom: 0.3rem;
     }
 
     .progress-bar {
       height: 100%;
       background-color: var(--rojo-secundario);
-      width: 60%;
+      border-radius: 20px;
+      transition: width 0.4s ease;
     }
 
-    /* RETOS COMPLETADOS */
-    .completed {
-      opacity: 0.7;
-      border-left-color: var(--gris-medio);
+    .progress-bar.complete {
+      background-color: var(--verde);
     }
 
+    .progress-label {
+      font-size: 0.78rem;
+      color: var(--gris-medio);
+    }
+
+    /* FORMULARIOS DE PROGRESO */
+    .progress-form {
+      margin-top: 0.6rem;
+    }
+
+    .progress-form label {
+      font-size: 0.82rem;
+      color: var(--gris-medio);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .progress-input-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .input-small {
+      width: 110px;
+      padding: 0.35rem 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 0.88rem;
+    }
+
+    .inline-form {
+      display: inline;
+    }
+
+    .action-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .badge-complete {
+      margin-top: 0.4rem;
+      color: var(--verde);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .badge-expired {
+      margin-top: 0.4rem;
+      color: var(--gris-medio);
+      font-size: 0.85rem;
+    }
+
+    .badge-creator {
+      margin-top: 0.4rem;
+      font-size: 0.82rem;
+      color: var(--naranja);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-overlay[hidden] { display: none; }
+
+    .modal {
+      background: var(--blanco);
+      border-radius: 14px;
+      padding: 1.4rem;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.1rem;
+    }
+
+    .modal-header h2 {
+      font-size: 1.1rem;
+    }
+
+    /* FORMULARIO DE RETO */
+    .reto-form .form-group {
+      margin-bottom: 0.9rem;
+    }
+
+    .reto-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: var(--gris-oscuro);
+    }
+
+    .reto-form input[type="text"],
+    .reto-form input[type="number"],
+    .reto-form textarea,
+    .reto-form select {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--gris-oscuro);
+    }
+
+    .reto-form textarea { resize: vertical; }
+
+    .form-row {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .form-row .form-group { flex: 1; }
+
+    .form-check {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-check input { width: auto; }
+    .form-check label { margin-bottom: 0; font-weight: normal; }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.6rem;
+      margin-top: 1.1rem;
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 600px) {
-      .brand-logo {
-        height: 24px;
-      }
+      .brand-logo { height: 24px; }
 
       .top-nav {
         gap: 0.45rem;
@@ -149,22 +520,14 @@
         padding: 0.42rem 0.72rem;
       }
 
-      .container {
-        padding: 1rem;
-      }
+      .form-row { flex-direction: column; }
 
-      .challenge {
-        padding: 0.9rem;
-        border-radius: 10px;
-      }
+      .form-actions { flex-direction: column-reverse; }
+      .form-actions .btn { width: 100%; text-align: center; }
 
-      .challenge h3 {
-        font-size: 1rem;
-      }
+      .section-header h2 { font-size: 1rem; }
 
-      .challenge p,
-      footer p {
-        font-size: 0.85rem;
-      }
+      .challenge { padding: 0.9rem; border-radius: 10px; }
+      .challenge h3 { font-size: 0.95rem; }
     }
 

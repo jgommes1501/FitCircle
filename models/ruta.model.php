@@ -1,7 +1,31 @@
 <?php
 
+/**
+ * ============================================================
+ * MODELO DE RUTAS — models/ruta.model.php
+ * ============================================================
+ * Consultas a BD relacionadas con las rutas deportivas y me gustas.
+ * Trabaja sobre las tablas 'routes' y 'route_likes'.
+ *
+ * Métodos:
+ *   ensureSocialSchema()        → Crea tablas y columnas si no existen
+ *   saveRoute(...)              → Guarda una ruta en BD
+ *   getUserRoutes($id, $limit)  → Rutas de un usuario concreto
+ *   getCommunityRoutes($uid)    → Rutas públicas de la comunidad
+ *   toggleLike($routeId, $uid)  → Alterna el me gusta de una ruta
+ *   getLikesCount($routeId)     → Cuenta los me gustas de una ruta
+ * ============================================================
+ */
+
 class rutaModel extends Model {
 
+    /**
+     * Crea las tablas y columnas necesarias si no existen:
+     *   1. Tabla 'routes' — actividades de todos los usuarios
+     *   2. Tabla 'route_likes' — me gustas (clave única ruta+usuario)
+     *   3. Columna 'avatar_path' en 'users' si no existía aún
+     * Se ejecuta en el constructor del controlador de rutas.
+     */
     public function ensureSocialSchema() {
         try {
             $db = $this->db->connect();
@@ -40,6 +64,12 @@ class rutaModel extends Model {
         }
     }
 
+    /**
+     * Guarda una ruta en la tabla 'routes'.
+     * path_json: array de coordenadas GPS serializado como JSON
+     * (null si es una ruta creada manualmente sin traza GPS).
+     * Devuelve el ID de la nueva ruta.
+     */
     public function saveRoute($userId, $title, $distanceM, $durationS, $steps, $calories, $pathJson = null, $isPublic = 1) {
         try {
             $sql = "INSERT INTO routes
@@ -65,6 +95,11 @@ class rutaModel extends Model {
         }
     }
 
+    /**
+     * Devuelve las rutas de un usuario ordenadas por fecha descendente.
+     * Incluye nombre de usuario, avatar y recuento de me gustas.
+     * $limit: 30 por defecto, hasta 1000 para la vista de historial.
+     */
     public function getUserRoutes($userId, $limit = 30) {
         try {
             $sql = "SELECT r.*,
@@ -89,6 +124,12 @@ class rutaModel extends Model {
         }
     }
 
+    /**
+     * Devuelve las rutas públicas de toda la comunidad.
+     * Si se pasa $currentUserId incluye 'liked_by_me' (1/0)
+     * para saber si el usuario ya dió me gusta a cada ruta.
+     * Máximo $limit rutas, ordenadas por fecha descendente.
+     */
     public function getCommunityRoutes($currentUserId = null, $limit = 40) {
         try {
             $likedSelect = '0 AS liked_by_me';
@@ -121,6 +162,12 @@ class rutaModel extends Model {
         }
     }
 
+    /**
+     * Alterna el me gusta del usuario en una ruta:
+     *   - Si ya existe → lo elimina y devuelve 'unliked'
+     *   - Si no existe → lo inserta y devuelve 'liked'
+     *   - Si la ruta no existe → devuelve false
+     */
     public function toggleLike($routeId, $userId) {
         try {
             $db = $this->db->connect();
@@ -157,6 +204,10 @@ class rutaModel extends Model {
         }
     }
 
+    /**
+     * Devuelve el número total de me gustas de una ruta.
+     * Usado en la respuesta JSON de toggle_like para actualizar el contador.
+     */
     public function getLikesCount($routeId) {
         try {
             $db = $this->db->connect();

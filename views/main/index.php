@@ -48,13 +48,7 @@
             <div class="alert alert-success"><?= htmlspecialchars($this->notify) ?></div>
         <?php endif; ?>
 
-        <section class="quick-launch reveal">
-            <div>
-                <h2>Empieza ahora mismo</h2>
-                <p>Inicia una ruta real desde la página de Rutas.</p>
-            </div>
-            <a href="<?= ROUTE_URL ?>ruta/index" class="btn-go-route">▶ Iniciar ruta</a>
-        </section>
+
 
         <section class="hero-main reveal">
             <div class="hero-overlay"></div>

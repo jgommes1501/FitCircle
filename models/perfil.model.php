@@ -1,13 +1,39 @@
 <?php
 
+/**
+ * ============================================================
+ * MODELO DE PERFIL — models/perfil.model.php
+ * ============================================================
+ * Consultas a BD relacionadas con el perfil del usuario:
+ * datos personales, estadísticas y rutas recientes.
+ * Trabaja sobre las tablas 'users', 'routes' y 'route_likes'.
+ *
+ * Métodos:
+ *   ensureProfileSchema() → Crea columnas/tablas si no existen
+ *   getUserProfile($id)   → Datos del usuario (nombre, email, avatar)
+ *   updateProfile(...)    → Actualiza nombre y/o avatar
+ *   getUserStats($id)     → Estadísticas globales (rutas, km, pasos, cal.)
+ *   getRecentRoutes($id)  → Últimas N rutas del usuario
+ * ============================================================
+ */
+
 class perfilModel extends Model {
 
+    /**
+     * Asegura que el esquema de BD esté preparado para el módulo de perfil.
+     * Operaciones:
+     *   1. Añade la columna 'avatar_path' a 'users' si no existe
+     *   2. Crea la tabla 'routes' si no existe
+     *   3. Crea la tabla 'route_likes' si no existe
+     */
     public function ensureProfileSchema() {
         try {
             $db = $this->db->connect();
 
+            // Comprueba si la columna avatar_path existe en la tabla users
             $avatarColumn = $db->query("SHOW COLUMNS FROM users LIKE 'avatar_path'")->fetch(PDO::FETCH_ASSOC);
             if (!$avatarColumn) {
+                // La añade después de la columna password
                 $db->exec("ALTER TABLE users ADD avatar_path VARCHAR(255) NULL AFTER password");
             }
 
@@ -40,6 +66,11 @@ class perfilModel extends Model {
         }
     }
 
+    /**
+     * Obtiene los datos del perfil de un usuario por su ID.
+     * Devuelve: id, name, email, avatar_path, created_at (objeto)
+     * o false si el usuario no existe.
+     */
     public function getUserProfile($userId) {
         try {
             $sql = 'SELECT id, name, email, avatar_path, created_at FROM users WHERE id = :user_id LIMIT 1';
@@ -55,6 +86,11 @@ class perfilModel extends Model {
         }
     }
 
+    /**
+     * Actualiza el nombre y/o avatar del usuario en BD.
+     * Si $avatarPath es null solo actualiza el nombre.
+     * Si tiene valor, actualiza también la foto de perfil.
+     */
     public function updateProfile($userId, $name, $avatarPath = null) {
         try {
             $db = $this->db->connect();
@@ -76,6 +112,14 @@ class perfilModel extends Model {
         }
     }
 
+    /**
+     * Calcula las estadísticas globales del usuario:
+     *   - routes_count: número total de rutas
+     *   - total_distance_m: metros totales recorridos
+     *   - total_calories: calorías totales quemadas
+     *   - total_steps: pasos totales dados
+     * COALESCE devuelve 0 en lugar de NULL si no hay rutas.
+     */
     public function getUserStats($userId) {
         try {
             $sql = "SELECT
@@ -98,6 +142,10 @@ class perfilModel extends Model {
         }
     }
 
+    /**
+     * Obtiene las últimas N rutas del usuario ordenadas por fecha descendente.
+     * Por defecto devuelve 5 rutas (para el resumen del perfil).
+     */
     public function getRecentRoutes($userId, $limit = 5) {
         try {
             $sql = "SELECT id, title, distance_m, duration_s, steps, calories, created_at

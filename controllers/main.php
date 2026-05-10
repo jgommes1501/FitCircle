@@ -1,29 +1,45 @@
 <?php
 
+/**
+ * ============================================================
+ * CONTROLADOR PRINCIPAL — controllers/main.php
+ * ============================================================
+ * Gestiona la página de inicio (Inicio) de FitCircle.
+ * URL: /main/index  (también es la página por defecto)
+ * No requiere sesión iniciada; cualquier visitante puede verla.
+ * ============================================================
+ */
 class Main extends Controller {
 
     function __construct() {
-        parent::__construct();
+        parent::__construct(); // Llama al constructor de Controller (crea $this->view)
     }
 
+    /**
+     * Método: index()
+     * Muestra la página de inicio con el rastreador GPS en vivo,
+     * el hero, las tarjetas de características y las secciones estáticas.
+     * URL: /main/index
+     */
     function index() {
-        // Iniciar sesión segura (sin forzar autenticación)
+        // Inicia o reanuda la sesión segura sin forzar autenticación
         sec_session_start();
 
-        // Comprobar si existe alguna notificación
+        // Recoge y borra cualquier notificación flash guardada en sesión
+        // (ej: "¡Ruta guardada!" tras redirigir desde otra página)
         if (isset($_SESSION['notify'])) {
             $this->view->notify = $_SESSION['notify'];
             unset($_SESSION['notify']);
         }
 
-        // Pasar estado de autenticación a la vista
+        // Informa a la vista si el usuario tiene sesión iniciada
         $this->view->logged_in = is_logged_in();
         $this->view->user_name = get_user_name();
 
-        // Creo la propiedad title para la vista
+        // Título que aparece en la pestaña del navegador
         $this->view->title = "FitCircle - Inicio";
 
-        // Llama a la vista para renderizar la página
+        // Carga la vista: views/main/index.php
         $this->view->render('main/index');
     }
 

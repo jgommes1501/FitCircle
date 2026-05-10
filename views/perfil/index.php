@@ -123,8 +123,7 @@
         <section class="card">
             <div class="card-title-row">
                 <h3>Historial reciente</h3>
-                <a href="<?= ROUTE_URL ?>ruta/index?tab=historial">Ver historial completo</a>
-                            <a href="<?= ROUTE_URL ?>ruta/historial">Ver historial completo</a>
+                <a href="<?= ROUTE_URL ?>ruta/historial">Ver historial completo</a>
             </div>
 
             <?php if (empty($recentRoutes)): ?>
