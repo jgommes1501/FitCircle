@@ -3,6 +3,8 @@ $name = $this->name ?? '';
 $email = $this->email ?? '';
 $errors = $this->errors ?? [];
 $notify = $this->notify ?? '';
+
+// Vista de registro: muestra validaciones y mantiene valores tras error.
 ?>
 
 <!DOCTYPE html>

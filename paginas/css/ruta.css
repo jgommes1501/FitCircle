@@ -1,4 +1,9 @@
+/*
+  Estilos del modulo de rutas.
+  Incluye panel de metricas en vivo, mapa Leaflet y feed de comunidad.
+*/
 :root {
+  /* Paleta principal y colores utilitarios del modulo de rutas. */
   --rojo-principal: #c62828;
   --rojo-secundario: #e53935;
   --gris-oscuro: #2e2e2e;
@@ -9,6 +14,7 @@
 }
 
 * {
+  /* Reset global y tipografia del modulo. */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,10 +22,12 @@
 }
 
 html, body {
+  /* Altura completa para overlays y paneles de pantalla completa. */
   height: 100%;
 }
 
 body {
+  /* Fondo con gradientes suaves para dar profundidad visual. */
   background:
     radial-gradient(1200px 420px at 85% -10%, rgba(229, 57, 53, 0.12), transparent 55%),
     radial-gradient(900px 360px at 10% -20%, rgba(198, 40, 40, 0.1), transparent 60%),
@@ -28,6 +36,7 @@ body {
 }
 
 header {
+  /* Header sticky para mantener navegacion accesible durante scroll. */
   background: #000000;
   color: var(--blanco);
   padding: 1rem;
@@ -56,6 +65,7 @@ header {
 }
 
 .top-nav {
+  /* Navegacion principal de secciones de la app. */
   display: flex;
   gap: 0.8rem;
   justify-content: center;
@@ -113,6 +123,7 @@ header {
 }
 
 .container {
+  /* Contenedor general de bloques del modulo de rutas. */
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
@@ -138,6 +149,7 @@ header {
 }
 
 .hero-banner {
+  /* Banner de entrada con accion principal de iniciar ruta. */
   background: linear-gradient(135deg, var(--rojo-principal), var(--rojo-secundario));
   color: var(--blanco);
   padding: 3rem 1.5rem;
@@ -167,6 +179,7 @@ header {
 }
 
 .start-route {
+  /* Boton de control de rastreo (iniciar/detener). */
   display: inline-block;
   background: var(--blanco);
   color: var(--rojo-principal);
@@ -231,6 +244,7 @@ header {
 }
 
 .live-route-section {
+  /* Seccion de seguimiento en vivo con mapa y metricas. */
   background: var(--blanco);
   border-radius: 14px;
   padding: 1.5rem;
@@ -251,6 +265,7 @@ header {
 }
 
 .route-stats {
+  /* Grid responsive de metricas instantaneas de actividad. */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
@@ -297,6 +312,7 @@ header {
 }
 
 .live-location-map {
+  /* Contenedor del mapa Leaflet para trazado GPS. */
   width: 100%;
   height: 350px;
   border-radius: 10px;
@@ -315,6 +331,7 @@ header {
 
 /* === MODAL FINISH PANEL === */
 .save-route-panel:not([hidden]) {
+  /* Overlay modal mostrado al finalizar una ruta. */
   display: flex;
   position: fixed;
   inset: 0;
@@ -326,6 +343,7 @@ header {
 }
 
 .finish-modal-box {
+  /* Caja del dialogo de guardado/comparticion de ruta. */
   background: var(--blanco);
   border-radius: 16px;
   padding: 2rem 2.5rem;
@@ -376,6 +394,7 @@ header {
 }
 
 .save-row {
+  /* Fila de campos: titulo + visibilidad publica/privada. */
   display: flex;
   gap: 0.8rem;
   align-items: center;
@@ -417,6 +436,7 @@ header {
 }
 
 .finish-actions {
+  /* Acciones finales del modal (guardar/descartar/login). */
   display: flex;
   gap: 0.7rem;
   align-items: center;

@@ -16,6 +16,7 @@
  *   leave()          → Abandona un reto (no puede el creador)
  *   updateProgress() → Actualiza los km/pasos del usuario en un reto
  *   delete()         → Elimina un reto (solo el creador)
+ * -  Crear retos, unirse, actualizar progreso.
  * ============================================================
  */
 

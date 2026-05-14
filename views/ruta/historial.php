@@ -1,3 +1,8 @@
+<!--
+    Vista de historial de rutas del usuario.
+    Resume metricas globales y lista cronologica de actividades guardadas.
+    Reutiliza estilos base de perfil con reglas locales para tarjetas.
+-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

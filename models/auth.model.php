@@ -12,6 +12,7 @@
  *   email_exists($email)   → Comprueba si un email ya está registrado
  *   create_user(...)       → Inserta un nuevo usuario en la BD
  * ============================================================
+ * - Guardar rutas (GPS o manual), historial, likes.
  */
 
 class authModel extends Model {

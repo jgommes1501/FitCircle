@@ -8,6 +8,8 @@
  * instancia automáticamente la clase Database para poder
  * conectarse a MySQL. Los modelos usan $this->db->connect()
  * para obtener un objeto PDO y ejecutar consultas SQL.
+ * - Clase base para todos los modelos. Inyecta la base de datos.
+
  * ============================================================
  */
 class Model {

@@ -15,6 +15,7 @@
  *   getUserStats($id)     → Estadísticas globales (rutas, km, pasos, cal.)
  *   getRecentRoutes($id)  → Últimas N rutas del usuario
  * ============================================================
+ *-  Datos de perfil, estadísticas, rutas recientes.
  */
 
 class perfilModel extends Model {

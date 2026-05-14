@@ -1,3 +1,8 @@
+<!--
+    Vista principal (home) de FitCircle.
+    Muestra propuesta de valor, accesos rapidos y secciones de informacion del producto.
+    Consume estado de sesion para adaptar la navegacion y los CTA.
+-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

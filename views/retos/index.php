@@ -1,3 +1,8 @@
+<!--
+    Vista del modulo de retos.
+    Combina retos del usuario y retos comunitarios con estados de participacion.
+    Permite crear, unirse y seguir progreso segun autenticacion.
+-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

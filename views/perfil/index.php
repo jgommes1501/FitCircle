@@ -1,3 +1,8 @@
+<!--
+    Vista de perfil del usuario.
+    Presenta datos personales, estadisticas acumuladas y rutas recientes.
+    Incluye formulario para actualizar nombre y avatar.
+-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

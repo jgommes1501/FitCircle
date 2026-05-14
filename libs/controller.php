@@ -9,6 +9,7 @@
  * para que cada controlador pueda pasarle datos a la vista
  * con $this->view->propiedad = valor y renderizarla con
  * $this->view->render('carpeta/vista').
+ * - Clase base para todos los controladores. Inyecta la vista.
  * ============================================================
  */
 class Controller {

@@ -1,3 +1,8 @@
+<!--
+    Vista principal del modulo de rutas.
+    Integra rastreo GPS en vivo, panel de guardado y feed de comunidad.
+    El estado de sesion define acciones de persistencia y comparticion.
+-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

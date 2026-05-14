@@ -13,7 +13,8 @@
  *   - Persistencia en localStorage: si el usuario no está logueado pero
  *     tiene una ruta en curso, se guarda localmente y se recupera al volver
  *     tras el login (fc_pending_route)
- *
+ * La fórmula de Haversine calcula la distancia más corta (círculo máximo) 
+ * entre dos puntos en la superficie terrestre utilizando sus coordenadas geográficas (latitud y longitud).
  * Requiere: Leaflet.js, data-route-url y data-logged-in en <body>
  * ============================================================
  */

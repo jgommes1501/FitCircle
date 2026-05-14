@@ -9,6 +9,7 @@
  * config/config.php (HOST, DB, USER, PASSWORD, CHARSET).
  * Cada vez que un modelo necesita consultar la BD llama a
  * $this->db->connect() y obtiene un objeto PDO listo.
+ * - Conexión PDO a MySQL y manejo de errores.
  * ============================================================
  */
 class Database {

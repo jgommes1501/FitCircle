@@ -3,6 +3,8 @@ $email = $this->email ?? '';
 $errors = $this->errors ?? [];
 $notify = $this->notify ?? '';
 $error = $this->error ?? '';
+
+// Vista de login: renderiza formulario con errores por campo y token CSRF.
 ?>
 
 <!DOCTYPE html>

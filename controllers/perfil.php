@@ -10,6 +10,7 @@
  *   index()  → Muestra el perfil, estadísticas y rutas recientes
  *   update() → Procesa el formulario de edición de perfil (nombre + avatar)
  * ============================================================
+ * -  Crear retos, unirse, actualizar progreso.
  */
 
 // Carga el modelo de perfil (consultas a 'users' y 'routes')

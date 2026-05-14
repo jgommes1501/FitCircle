@@ -1,4 +1,9 @@
+/*
+  Estilos del modulo de retos.
+  Organiza tabs, tarjetas de retos, formularios modales y estados visuales.
+*/
     :root {
+      /* Variables de color y sombras del modulo de retos. */
       --rojo-principal: #c62828;
       --rojo-secundario: #e53935;
       --gris-oscuro: #2e2e2e;
@@ -12,6 +17,7 @@
     }
 
     * {
+      /* Reset base para asegurar consistencia visual. */
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -19,11 +25,13 @@
     }
 
     body {
+      /* Fondo y color tipografico principal del modulo. */
       background-color: var(--gris-claro);
       color: var(--gris-oscuro);
     }
 
     footer {
+      /* Pie de pagina comun en pantallas de retos. */
       background: #000000;
       color: var(--blanco);
       text-align: center;
@@ -95,6 +103,7 @@
 
     /* CONTENEDOR */
     .container {
+      /* Limita ancho y aplica padding del contenido principal. */
       padding: 1rem;
       max-width: 800px;
       margin: 0 auto;
@@ -102,6 +111,7 @@
 
     /* ALERTAS */
     .alert {
+      /* Mensajes de exito/error para acciones de retos. */
       padding: 0.8rem 1rem;
       border-radius: 8px;
       margin-bottom: 1rem;
@@ -126,6 +136,7 @@
 
     /* GUEST BANNER */
     .guest-banner {
+      /* Banner de conversion para usuarios invitados. */
       display: flex;
       gap: 1rem;
       align-items: flex-start;
@@ -160,6 +171,7 @@
 
     /* TABS */
     .tabs {
+      /* Selector de pestanas entre retos propios y comunidad. */
       display: flex;
       gap: 0.5rem;
       margin-bottom: 1.2rem;
@@ -185,6 +197,7 @@
 
     /* TAB PANELS */
     .tab-panel {
+      /* Panel de contenido por pestana (oculto por defecto). */
       display: none;
     }
 
@@ -194,6 +207,7 @@
 
     /* SECTION HEADER */
     .section-header {
+      /* Encabezado de cada bloque con titulo y accion primaria. */
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -207,6 +221,7 @@
 
     /* BOTONES */
     .btn {
+      /* Base comun de botones del modulo. */
       display: inline-block;
       padding: 0.55rem 1.1rem;
       border-radius: 20px;
@@ -266,6 +281,7 @@
 
     /* TARJETAS DE RETOS */
     .challenge {
+      /* Tarjeta individual de reto con estado y acciones. */
       background-color: var(--blanco);
       border-radius: 12px;
       padding: 1rem 1.1rem;
@@ -318,6 +334,7 @@
 
     /* BADGES */
     .badge {
+      /* Etiquetas compactas para tipo, periodo y privacidad. */
       display: inline-block;
       padding: 0.15rem 0.55rem;
       border-radius: 12px;
@@ -339,6 +356,7 @@
     }
 
     .progress {
+      /* Barra de progreso visual del avance del reto. */
       background-color: #eeeeee;
       border-radius: 20px;
       height: 10px;
@@ -364,6 +382,7 @@
 
     /* FORMULARIOS DE PROGRESO */
     .progress-form {
+      /* Formulario rapido para actualizar avance del reto. */
       margin-top: 0.6rem;
     }
 

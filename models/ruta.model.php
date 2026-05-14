@@ -15,6 +15,7 @@
  *   toggleLike($routeId, $uid)  → Alterna el me gusta de una ruta
  *   getLikesCount($routeId)     → Cuenta los me gustas de una ruta
  * ============================================================
+ *  - Consultas de rutas, historial, me gustas.
  */
 
 class rutaModel extends Model {

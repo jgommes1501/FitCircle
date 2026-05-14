@@ -12,6 +12,7 @@
  *
  * El método render() carga el archivo PHP de la vista
  * ubicado en /views/controlador/metodo.php.
+ * - Maneja datos y renderiza archivos HTML+PHP.
  * ============================================================
  */
 class View {

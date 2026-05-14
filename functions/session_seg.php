@@ -15,6 +15,7 @@
  *   get_user_name()     → Devuelve el nombre del usuario en sesión
  *   get_user_email()    → Devuelve el email del usuario en sesión
  *   require_login()     → Redirige al login si no hay sesión activa
+ * - session_seg.php → Gestión de sesiones seguras, cookies, autenticación.
  * ============================================================
  */
 

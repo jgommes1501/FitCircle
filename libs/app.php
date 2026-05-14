@@ -6,11 +6,13 @@
  * ============================================================
  * La clase App es el núcleo del sistema MVC.
  * Recibe la URL del navegador con el formato:
- *   index.php?url=controlador/metodo/param1/param2
+ *  index.php?url=controlador/metodo/param1/param2
  * Busca el archivo del controlador en /controllers/,
  * crea una instancia y llama al método correspondiente.
  * Si no se indica controlador/método, usa los valores
  * por defecto definidos en config.php (main / index).
+ * - Router. Analiza la URL y decide qué controlador ejecutar
+ * libs/ (Motor MVC - el cerebro)
  * ============================================================
  */
 class App {

@@ -1,4 +1,9 @@
+/*
+  Estilos compartidos para login y registro.
+  Incluye estructura del formulario, estados de error y alertas.
+*/
 :root {
+  /* Variables de color para auth (login y registro). */
   --rojo-principal: #c62828;
   --rojo-secundario: #e53935;
   --gris-oscuro: #2e2e2e;
@@ -10,6 +15,7 @@
 }
 
 * {
+  /* Normalizacion base de margenes y tipografia. */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,6 +23,7 @@
 }
 
 body.login-page {
+  /* Lienzo de autenticacion centrado vertical y horizontalmente. */
   background: linear-gradient(135deg, var(--rojo-principal), var(--rojo-secundario));
   min-height: 100vh;
   display: flex;
@@ -26,11 +33,13 @@ body.login-page {
 }
 
 .login-container {
+  /* Limita el ancho maximo del bloque de acceso. */
   width: 100%;
   max-width: 450px;
 }
 
 .login-box {
+  /* Tarjeta principal donde vive el formulario. */
   background: var(--blanco);
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -39,6 +48,7 @@ body.login-page {
 }
 
 @keyframes slideUp {
+  /* Animacion de entrada al cargar la pantalla. */
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -50,6 +60,7 @@ body.login-page {
 }
 
 .login-header {
+  /* Franja superior de branding y titulo del formulario. */
   background: #000000;
   color: var(--blanco);
   padding: 2rem 1rem;
@@ -79,6 +90,7 @@ body.login-page {
 }
 
 .login-form {
+  /* Espaciado interno del cuerpo del formulario. */
   padding: 2rem;
 }
 
@@ -87,6 +99,7 @@ body.login-page {
 }
 
 .form-group label {
+  /* Etiquetas legibles para cada campo. */
   display: block;
   font-size: 0.95rem;
   font-weight: 600;
@@ -95,6 +108,7 @@ body.login-page {
 }
 
 .form-control {
+  /* Campo base para inputs de email, texto y password. */
   width: 100%;
   padding: 0.75rem;
   border: 2px solid #ddd;
@@ -110,6 +124,7 @@ body.login-page {
 }
 
 .form-control.input-error {
+  /* Estado visual de campo invalido tras validacion. */
   border-color: var(--rojo-error);
   background-color: rgba(211, 47, 47, 0.05);
 }
@@ -140,6 +155,7 @@ body.login-page {
 }
 
 .alert {
+  /* Componente reutilizable para mensajes de estado. */
   padding: 1rem;
   border-radius: 6px;
   margin-bottom: 1.5rem;
@@ -188,6 +204,7 @@ body.login-page {
 }
 
 .btn-login {
+  /* Boton principal de envio del formulario. */
   width: 100%;
   padding: 0.85rem;
   background: linear-gradient(135deg, var(--rojo-principal), var(--rojo-secundario));
@@ -211,6 +228,7 @@ body.login-page {
 }
 
 .login-links {
+  /* Area de enlaces secundarios (volver, recuperar, registrar). */
   text-align: center;
   margin-top: 1rem;
   padding-top: 1rem;
@@ -247,6 +265,7 @@ body.login-page {
 
 /* Estilos responsivos */
 @media (max-width: 480px) {
+  /* Ajustes para moviles pequenos. */
   body.login-page {
     padding: 0.75rem;
     align-items: stretch;

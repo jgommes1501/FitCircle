@@ -11,6 +11,7 @@
  *   register()         → Muestra el formulario de registro
  *   validate_register()→ Valida datos y crea la cuenta
  *   logout()           → Destruye la sesión y redirige
+ * - Login, registro, logout. Valida formularios y contraseñas.
  * ============================================================
  */
 

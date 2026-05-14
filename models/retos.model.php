@@ -27,6 +27,7 @@
  *   updateProgress(...)     → Actualiza el progreso del participante
  *   deleteChallenge(...)    → Elimina el reto (solo el creador)
  * ============================================================
+ *  -  Consultas de retos, participantes.
  */
 
 class retosModel extends Model {

@@ -15,6 +15,7 @@
  *   historial()     → Muestra todas las rutas del usuario (requiere sesión)
  *   toggle_like()   → Da/quita me gusta a una ruta (soporta AJAX y redirect)
  * ============================================================
+ * - Guardar rutas (GPS o manual), historial, likes.
  */
 
 // Carga el modelo de rutas (tablas 'routes' y 'route_likes')

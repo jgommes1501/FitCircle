@@ -1,4 +1,9 @@
+/*
+  Capa de tema global (modo claro/oscuro).
+  Sobrescribe colores base y componentes compartidos en toda la aplicacion.
+*/
 :root {
+  /* Tokens de color base para modo claro. */
   --fit-red-700: #b71c1c;
   --fit-red-500: #e53935;
 
@@ -14,6 +19,7 @@
 }
 
 body.dark-mode {
+  /* Reasignacion de variables para tema oscuro. */
   --theme-bg: #050607;
   --theme-surface: #0d1117;
   --theme-surface-2: #141922;
@@ -27,11 +33,13 @@ body.dark-mode {
 
 body,
 body.login-page {
+  /* Fuerza colores de fondo/texto desde variables de tema. */
   background: var(--theme-bg) !important;
   color: var(--theme-text) !important;
 }
 
 header {
+  /* Cabecera global con alto contraste en ambos temas. */
   background: #000 !important;
   color: #fff !important;
   text-align: center;
@@ -64,6 +72,7 @@ header {
 }
 
 .top-nav a {
+  /* Estilo uniforme para enlaces del menu superior. */
   color: #fff;
   text-decoration: none;
   padding: 0.42rem 0.85rem;
@@ -123,6 +132,7 @@ header {
 .hero-banner,
 .hist-sum-card,
 .route-stat {
+  /* Capa de superficie para tarjetas/componentes compartidos. */
   background: linear-gradient(180deg, var(--theme-surface), var(--theme-surface-2)) !important;
   border: 1px solid var(--theme-border) !important;
   color: var(--theme-text) !important;
@@ -161,6 +171,7 @@ header {
 .metric-item,
 .author-name,
 .route-author {
+  /* Forzado de color para texto principal de componentes. */
   color: var(--theme-text) !important;
 }
 
@@ -177,6 +188,7 @@ header {
 .date,
 .route-author,
 .metric-item {
+  /* Variante de texto secundario para metadatos y descripciones. */
   color: var(--theme-muted) !important;
 }
 
@@ -190,6 +202,7 @@ header {
 .btn-ghost,
 .btn-login,
 .btn-logout {
+  /* Estilo de CTA global consistente en todos los modulos. */
   background: linear-gradient(120deg, var(--fit-red-700), var(--fit-red-500)) !important;
   color: #fff !important;
   border: none !important;
@@ -205,6 +218,7 @@ input[type='password'],
 input[type='number'],
 textarea,
 select {
+  /* Apariencia de campos de entrada adaptada al tema activo. */
   background: var(--theme-input-bg) !important;
   color: var(--theme-input-text) !important;
   border: 1px solid var(--theme-input-border) !important;
@@ -237,6 +251,7 @@ body.dark-mode footer {
 }
 
 .theme-card {
+  /* Tarjeta de configuracion visual en perfil. */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -254,6 +269,7 @@ body.dark-mode footer {
 }
 
 .theme-switch input {
+  /* Interruptor custom para alternar claro/oscuro. */
   width: 44px;
   height: 24px;
   appearance: none;
@@ -290,6 +306,7 @@ body.dark-mode footer {
 }
 
 @media (max-width: 768px) {
+  /* Escalado del logo en tablets. */
   .brand-logo {
     height: 92px !important;
     max-width: min(520px, 88vw) !important;
@@ -297,6 +314,7 @@ body.dark-mode footer {
 }
 
 @media (max-width: 480px) {
+  /* Escalado del logo en moviles pequenos. */
   .brand-logo {
     height: 72px !important;
     max-width: min(420px, 84vw) !important;
